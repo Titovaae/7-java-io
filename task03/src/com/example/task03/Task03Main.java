@@ -2,6 +2,8 @@ package com.example.task03;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.nio.charset.Charset;
 
 public class Task03Main {
@@ -15,7 +17,15 @@ public class Task03Main {
     }
 
     public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
-        // your implementation here
-        return "";
+        if(inputStream == null || charset == null) {
+            throw new IllegalArgumentException();
+        }
+        Reader reader = new InputStreamReader(inputStream, charset);
+        String str = "";
+        int ch;
+        while ((ch = reader.read()) != -1) {
+            str += (char) ch;
+        }
+        return str;
     }
 }
